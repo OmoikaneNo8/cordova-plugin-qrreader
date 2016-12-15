@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-qrreader"
-  version="0.0.3">
+  version="0.0.4">
 
   <name>QrReader</name>
   <description>This is a Cordova Plugin. for QR Read.</description>
@@ -22,6 +22,6 @@
         <param name="android-package" value="plugin.qrreader.QrReader"/>
       </feature>
     </config-file>
-    <source-file src="src/android/qrreader.java" target-dir="src/plugin/qrreader/"/>
+    <source-file src="src/android/QrReader.java" target-dir="src/plugin/qrreader/"/>
   </platform>
 </plugin>
