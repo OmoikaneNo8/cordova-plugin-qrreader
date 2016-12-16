@@ -19,34 +19,38 @@ import org.apache.cordova.PermissionHelper;
 import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.client.android.encode.EncodeActivity;
 import com.google.zxing.client.android.Intents;
-public static final int REQUEST_CODE = 0x0ba7c0de;
 
-private static final String SCAN = "scan";
-private static final String ENCODE = "encode";
-private static final String CANCELLED = "cancelled";
-private static final String FORMAT = "format";
-private static final String TEXT = "text";
-private static final String DATA = "data";
-private static final String TYPE = "type";
-private static final String PREFER_FRONTCAMERA = "preferFrontCamera";
-private static final String ORIENTATION = "orientation";
-private static final String SHOW_FLIP_CAMERA_BUTTON = "showFlipCameraButton";
-private static final String SHOW_TORCH_BUTTON = "showTorchButton";
-private static final String FORMATS = "formats";
-private static final String PROMPT = "prompt";
-private static final String TEXT_TYPE = "TEXT_TYPE";
-private static final String EMAIL_TYPE = "EMAIL_TYPE";
-private static final String PHONE_TYPE = "PHONE_TYPE";
-private static final String SMS_TYPE = "SMS_TYPE";
-
-private static final String LOG_TAG = "BarcodeScanner";
-
-private String [] permissions = { Manifest.permission.CAMERA };
-
-private JSONArray requestArgs;
-private CallbackContext callbackContext;
 
 public class QrReader extends CordovaPlugin {
+  public static final int REQUEST_CODE = 0x0ba7c0de;
+
+  private static final String SCAN = "scan";
+  private static final String ENCODE = "encode";
+  private static final String CANCELLED = "cancelled";
+  private static final String FORMAT = "format";
+  private static final String TEXT = "text";
+  private static final String DATA = "data";
+  private static final String TYPE = "type";
+  private static final String PREFER_FRONTCAMERA = "preferFrontCamera";
+  private static final String ORIENTATION = "orientation";
+  private static final String SHOW_FLIP_CAMERA_BUTTON = "showFlipCameraButton";
+  private static final String SHOW_TORCH_BUTTON = "showTorchButton";
+  private static final String FORMATS = "formats";
+  private static final String PROMPT = "prompt";
+  private static final String TEXT_TYPE = "TEXT_TYPE";
+  private static final String EMAIL_TYPE = "EMAIL_TYPE";
+  private static final String PHONE_TYPE = "PHONE_TYPE";
+  private static final String SMS_TYPE = "SMS_TYPE";
+
+  private static final String LOG_TAG = "QrReader";
+
+  private String [] permissions = { Manifest.permission.CAMERA };
+
+  private JSONArray requestArgs;
+  private CallbackContext callbackContext;
+    public QrReader(){
+
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
