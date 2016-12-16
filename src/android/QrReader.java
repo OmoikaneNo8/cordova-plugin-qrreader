@@ -20,6 +20,7 @@ import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.client.android.encode.EncodeActivity;
 import com.google.zxing.client.android.Intents;
 
+import javax.xml.bind.DatatypeConverter;
 
 public class QrReader extends CordovaPlugin {
     public static final int REQUEST_CODE = 0x0ba7c0de;
@@ -146,8 +147,9 @@ public class QrReader extends CordovaPlugin {
                 JSONObject obj = new JSONObject();
 
                 try {
-                  byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_0");
-                    obj.put(HEAD,DatatypeConverter.printHexBinary(dataBytes));
+                    byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_0");
+                    Sting hedret = DatatypeConverter.printHexBinary(dataBytes)
+                    obj.put(HEAD,"");
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     obj.put(CANCELLED, false);
