@@ -12,7 +12,7 @@
   <engines>
     <engine name="cordova-android" version=">5.0.0"/>
   </engines>
-  <js-module src="www/qrreader.js" name="QrReader">
+  <js-module src="www/qrreader.js" name="qrreader">
     <clobbers target="QrReader"/>
   </js-module>
 

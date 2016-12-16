@@ -33,6 +33,7 @@ function QrReader() {
       "upc_EAN_EXTENSION": 65536
       };
 }
+
 QrReader.prototype.scan = function (successCallback, errorCallback, config) {
   if (config instanceof Array) {
       // do nothing
@@ -75,7 +76,7 @@ QrReader.prototype.scan = function (successCallback, errorCallback, config) {
           scanInProgress = false;
           errorCallback(error);
       },
-      'QrReader',
+      'qrreader',
       'scan',
       config
   );
