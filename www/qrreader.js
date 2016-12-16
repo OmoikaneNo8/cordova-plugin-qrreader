@@ -75,7 +75,7 @@ QrReader.prototype.scan = function (successCallback, errorCallback, config) {
           scanInProgress = false;
           errorCallback(error);
       },
-      'BarcodeScanner',
+      'QrReader',
       'scan',
       config
   );
