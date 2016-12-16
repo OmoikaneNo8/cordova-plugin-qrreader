@@ -144,8 +144,27 @@ public class QrReader extends CordovaPlugin {
         if (requestCode == REQUEST_CODE && this.callbackContext != null) {
             if (resultCode == Activity.RESULT_OK) {
                 JSONObject obj = new JSONObject();
+
+                // Method Name
+                String headresult = "";
                 try {
-                    obj.put(HEAD,intent.toString());
+                    for(Method m : intent.getDeclaredMethods()) {
+                        // メソッド名
+                        headresult += "<" + m.getName() + ":";
+
+                        // 引数の型
+                        for(Class param : m.getParameterTypes()) {
+                            headresult += param.getName() ",";
+                        }
+
+                        // 返却値の型
+                        headresult += "|" + m.getReturnType().getName() + ">";
+                    }
+                } catch (Exception e) {
+                    headresult = e.toString();
+                }
+                try {
+                    obj.put(HEAD,headresult);
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     obj.put(CANCELLED, false);
