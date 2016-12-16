@@ -20,8 +20,6 @@ import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.client.android.encode.EncodeActivity;
 import com.google.zxing.client.android.Intents;
 
-import javax.xml.bind.DatatypeConverter;
-
 public class QrReader extends CordovaPlugin {
     public static final int REQUEST_CODE = 0x0ba7c0de;
 
@@ -149,7 +147,7 @@ public class QrReader extends CordovaPlugin {
                 try {
                     byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_0");
                     StringBuilder sb = new StringBuilder();
-                    for (byte d: dataBytes) {
+                    for (byte d : dataBytes) {
                         sb.append(String.format("%02X", d));
                     }
                     String str = sb.toString();
