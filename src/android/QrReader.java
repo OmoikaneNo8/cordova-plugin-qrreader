@@ -28,6 +28,7 @@ public class QrReader extends CordovaPlugin {
     private static final String ENCODE = "encode";
     private static final String CANCELLED = "cancelled";
     private static final String FORMAT = "format";
+    private static final String HEAD = "head";
     private static final String TEXT = "text";
     private static final String DATA = "data";
     private static final String TYPE = "type";
@@ -144,6 +145,7 @@ public class QrReader extends CordovaPlugin {
             if (resultCode == Activity.RESULT_OK) {
                 JSONObject obj = new JSONObject();
                 try {
+                    obj.put(HEAD,intent.toString());
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     obj.put(CANCELLED, false);
@@ -155,6 +157,7 @@ public class QrReader extends CordovaPlugin {
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 JSONObject obj = new JSONObject();
                 try {
+                    obj.put(HEAD,"");
                     obj.put(TEXT, "");
                     obj.put(FORMAT, "");
                     obj.put(CANCELLED, true);
