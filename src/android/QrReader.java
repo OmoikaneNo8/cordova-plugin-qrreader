@@ -150,12 +150,7 @@ public class QrReader extends CordovaPlugin {
                 try {
                     for(Method m : intent.getDeclaredMethods()) {
                         // メソッド名
-                        headresult += "<" + m.getName() + ":";
-
-                        // 引数の型
-                        for(Class param : m.getParameterTypes()) {
-                            headresult += param.getName() ",";
-                        }
+                        headresult += "<" + m.getName();
 
                         // 返却値の型
                         headresult += "|" + m.getReturnType().getName() + ">";
