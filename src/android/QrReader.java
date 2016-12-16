@@ -148,8 +148,10 @@ public class QrReader extends CordovaPlugin {
 
                 try {
                     byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_0");
-                    Sting hedret = DatatypeConverter.printHexBinary(dataBytes);
-                    obj.put(HEAD,"");
+                    String str = dataBytes.stream(array)
+                        .map(b -> String.format("%02X", b))
+                        .collect(Collectors.joining());
+                    obj.put(HEAD,str);
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     obj.put(CANCELLED, false);
