@@ -149,13 +149,13 @@ public class QrReader extends CordovaPlugin {
                     byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTES");
                     boolean splitflg = false;
                     int index = 0;
-                    if ((rawqrcode[0] & 0xf0) == 0x30){
+                    if ((dataBytes[0] & 0xf0) == 0x30){
                       splitflg = true;
                       index = (rawqrcode[0] & 0x0F);
                     }
 
                     obj.put(SPLIT,splitflg);
-                    obj.put(INDEX,index.toStriong());
+                    obj.put(INDEX,index);
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     obj.put(CANCELLED, false);
