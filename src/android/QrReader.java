@@ -145,24 +145,12 @@ public class QrReader extends CordovaPlugin {
                 JSONObject obj = new JSONObject();
 
                 try {
-                    byte[] dataBytes0 = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_0");
-                    byte[] dataBytes1 = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_1");
-                    byte[] dataBytes2 = intent.getByteArrayExtra("SCAN_RESULT_BYTE_SEGMENTS_2");
+                    byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTES");
                     StringBuilder sb = new StringBuilder();
-                    for (byte d : dataBytes0) {
+                    for (byte d : dataBytes) {
                         sb.append(String.format("%02X", d));
                     }
-                    String str = sb.toString().concat("-");
-                    sb = new StringBuilder();
-                    for (byte d : dataBytes1) {
-                        sb.append(String.format("%02X", d));
-                    }
-                    str = str.concat(sb.toString().concat("-"));
-                    sb = new StringBuilder();
-                    for (byte d : dataBytes2) {
-                        sb.append(String.format("%02X", d));
-                    }
-                    str = str.concat(sb.toString().concat("-"));
+                    String str = sb.toString();
                     obj.put(HEAD,str);
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
