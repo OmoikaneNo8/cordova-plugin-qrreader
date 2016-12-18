@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-qrreader"
-  version="0.0.30">
+  version="0.0.31">
 
   <name>QrReader</name>
   <description>This is a Cordova Plugin. for QR Read.</description>
@@ -16,19 +16,34 @@
     <clobbers target="QrReader"/>
   </js-module>
 
-  <platform name="android">
-    <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="qrreader">
-        <param name="android-package" value="plugin.qrreader.QrReader"/>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="QrReader">
+        <param name="ios-package" value="CDVQrReader"/>
       </feature>
     </config-file>
-    <source-file src="src/android/QrReader.java" target-dir="src/plugin/qrreader/"/>
+    <preference name="CAMERA_USAGE_DESCRIPTION" default=" "/>
+    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+      <string>$CAMERA_USAGE_DESCRIPTION</string>
+    </config-file>
+    <resource-file src="src/ios/scannerOverlay.xib"/>
+    <resource-file src="src/ios/CDVQrReader.bundle"/>
+    <header-file src="src/ios/zxing-all-in-one.h"/>
+    <source-file src="src/ios/CDVQrReader.mm" compiler-flags="-fno-objc-arc"/>
+    <source-file src="src/ios/zxing-all-in-one.cpp"/>
+    <framework src="libiconv.dylib"/>
+    <framework src="AVFoundation.framework"/>
+    <framework src="AssetsLibrary.framework"/>
+    <framework src="CoreVideo.framework"/>
+    <framework src="QuartzCore.framework"/>
+    <framework src="CoreGraphics.framework"/>
+    <framework src="CoreImage.framework"/>
+    <framework src="AudioToolbox.framework"/>
   </platform>
-
   <platform name="android">
     <source-file src="src/android/QrReader.java" target-dir="src/plugin/qrreader/"/>
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="qrreader">
+      <feature name="QrReader">
         <param name="android-package" value="plugin.qrreader.QrReader"/>
       </feature>
     </config-file>
