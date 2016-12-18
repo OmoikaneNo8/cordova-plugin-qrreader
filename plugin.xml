@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-qrreader"
-  version="0.0.31">
+  version="0.0.32">
 
   <name>QrReader</name>
   <description>This is a Cordova Plugin. for QR Read.</description>
@@ -18,7 +18,7 @@
 
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
-      <feature name="QrReader">
+      <feature name="qrreader">
         <param name="ios-package" value="CDVQrReader"/>
       </feature>
     </config-file>
@@ -43,7 +43,7 @@
   <platform name="android">
     <source-file src="src/android/QrReader.java" target-dir="src/plugin/qrreader/"/>
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="QrReader">
+      <feature name="qrreader">
         <param name="android-package" value="plugin.qrreader.QrReader"/>
       </feature>
     </config-file>
@@ -55,7 +55,7 @@
       <uses-permission android:name="android.permission.CAMERA"/>
       <uses-permission android:name="android.permission.FLASHLIGHT"/>
       <uses-feature android:name="android.hardware.camera" android:required="true"/>
-    </config-file>s
+    </config-file>
     <dependency id="cordova-plugin-compat" version="^1.0.0"/>
   </platform>
 </plugin>
