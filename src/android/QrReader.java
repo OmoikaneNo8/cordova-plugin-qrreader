@@ -151,7 +151,7 @@ public class QrReader extends CordovaPlugin {
                     int index = 0;
                     if ((dataBytes[0] & 0xf0) == 0x30){
                       splitflg = true;
-                      index = (rawqrcode[0] & 0x0F);
+                      index = (dataBytes[0] & 0x0F);
                     }
 
                     obj.put(SPLIT,splitflg);
