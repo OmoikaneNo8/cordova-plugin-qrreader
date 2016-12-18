@@ -27,7 +27,8 @@ public class QrReader extends CordovaPlugin {
     private static final String ENCODE = "encode";
     private static final String CANCELLED = "cancelled";
     private static final String FORMAT = "format";
-    private static final String HEAD = "head";
+    private static final String SPLIT = "split";
+    private static final String INDEX = "index";
     private static final String TEXT = "text";
     private static final String DATA = "data";
     private static final String TYPE = "type";
@@ -146,12 +147,15 @@ public class QrReader extends CordovaPlugin {
 
                 try {
                     byte[] dataBytes = intent.getByteArrayExtra("SCAN_RESULT_BYTES");
-                    StringBuilder sb = new StringBuilder();
-                    for (byte d : dataBytes) {
-                        sb.append(String.format("%02X", d));
+                    boolean splitflg = false;
+                    int index = 0;
+                    if ((rawqrcode[0] & 0xf0) == 0x30){
+                      splitflg = true;
+                      index = (rawqrcode[0] & 0x0F);
                     }
-                    String str = sb.toString();
-                    obj.put(HEAD,str);
+
+                    obj.put(SPLIT,splitflg);
+                    obj.put(INDEX,index.toStriong());
                     obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
                     obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                     obj.put(CANCELLED, false);
@@ -163,7 +167,8 @@ public class QrReader extends CordovaPlugin {
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 JSONObject obj = new JSONObject();
                 try {
-                    obj.put(HEAD,"");
+                    obj.put(SPLIT,"");
+                    obj.put(INDEX,"");
                     obj.put(TEXT, "");
                     obj.put(FORMAT, "");
                     obj.put(CANCELLED, true);
