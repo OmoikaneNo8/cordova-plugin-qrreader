@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-qrreader"
-  version="0.0.35">
+  version="0.0.36">
 
   <name>QrReader</name>
   <description>This is a Cordova Plugin. for QR Read.</description>
@@ -56,6 +56,7 @@
       <uses-permission android:name="android.permission.FLASHLIGHT"/>
       <uses-feature android:name="android.hardware.camera" android:required="true"/>
     </config-file>
+    <framework src="src/android/qrreader.gradle" custom="true" type="gradleReference"/>
     <dependency id="cordova-plugin-compat" version="^1.0.0"/>
   </platform>
 </plugin>
