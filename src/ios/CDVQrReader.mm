@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------
 // Delegate to handle orientation functions
 //------------------------------------------------------------------------------
-@protocol CDVBarcodeScannerOrientationDelegate <NSObject>
+@protocol CDVQrReaderOrientationDelegate <NSObject>
 
 - (NSUInteger)supportedInterfaceOrientations;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -40,7 +40,7 @@
 //------------------------------------------------------------------------------
 // plugin class
 //------------------------------------------------------------------------------
-@interface CDVBarcodeScanner : CDVPlugin {}
+@interface CDVQrReader : CDVPlugin {}
 - (NSString*)isScanNotPossible;
 - (void)scan:(CDVInvokedUrlCommand*)command;
 - (void)encode:(CDVInvokedUrlCommand*)command;
@@ -53,7 +53,7 @@
 // class that does the grunt work
 //------------------------------------------------------------------------------
 @interface CDVbcsProcessor : NSObject <AVCaptureMetadataOutputObjectsDelegate> {}
-@property (nonatomic, retain) CDVBarcodeScanner*           plugin;
+@property (nonatomic, retain) CDVQrReader*           plugin;
 @property (nonatomic, retain) NSString*                   callback;
 @property (nonatomic, retain) UIViewController*           parentViewController;
 @property (nonatomic, retain) CDVbcsViewController*        viewController;
@@ -72,7 +72,7 @@
 @property (nonatomic)         BOOL                        isTransitionAnimated;
 
 
-- (id)initWithPlugin:(CDVBarcodeScanner*)plugin callback:(NSString*)callback parentViewController:(UIViewController*)parentViewController alterateOverlayXib:(NSString *)alternateXib;
+- (id)initWithPlugin:(CDVQrReader*)plugin callback:(NSString*)callback parentViewController:(UIViewController*)parentViewController alterateOverlayXib:(NSString *)alternateXib;
 - (void)scanBarcode;
 - (void)barcodeScanSucceeded:(NSString*)text format:(NSString*)format;
 - (void)barcodeScanFailed:(NSString*)message;
@@ -91,19 +91,19 @@
 // Qr encoder processor
 //------------------------------------------------------------------------------
 @interface CDVqrProcessor: NSObject
-@property (nonatomic, retain) CDVBarcodeScanner*          plugin;
+@property (nonatomic, retain) CDVQrReader*          plugin;
 @property (nonatomic, retain) NSString*                   callback;
 @property (nonatomic, retain) NSString*                   stringToEncode;
 @property                     NSInteger                   size;
 
-- (id)initWithPlugin:(CDVBarcodeScanner*)plugin callback:(NSString*)callback stringToEncode:(NSString*)stringToEncode;
+- (id)initWithPlugin:(CDVQrReader*)plugin callback:(NSString*)callback stringToEncode:(NSString*)stringToEncode;
 - (void)generateImage;
 @end
 
 //------------------------------------------------------------------------------
 // view controller for the ui
 //------------------------------------------------------------------------------
-@interface CDVbcsViewController : UIViewController <CDVBarcodeScannerOrientationDelegate> {}
+@interface CDVbcsViewController : UIViewController <CDVQrReaderOrientationDelegate> {}
 @property (nonatomic, retain) CDVbcsProcessor*  processor;
 @property (nonatomic, retain) NSString*        alternateXib;
 @property (nonatomic)         BOOL             shutterPressed;
@@ -123,7 +123,7 @@
 //------------------------------------------------------------------------------
 // plugin class
 //------------------------------------------------------------------------------
-@implementation CDVBarcodeScanner
+@implementation CDVQrReader
 
 //--------------------------------------------------------------------------
 - (NSString*)isScanNotPossible {
@@ -289,7 +289,7 @@
 SystemSoundID _soundFileObject;
 
 //--------------------------------------------------------------------------
-- (id)initWithPlugin:(CDVBarcodeScanner*)plugin
+- (id)initWithPlugin:(CDVQrReader*)plugin
             callback:(NSString*)callback
 parentViewController:(UIViewController*)parentViewController
   alterateOverlayXib:(NSString *)alternateXib {
@@ -306,7 +306,7 @@ parentViewController:(UIViewController*)parentViewController
     self.capturing = NO;
     self.results = [[NSMutableArray new] autorelease];
 
-    CFURLRef soundFileURLRef  = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("CDVBarcodeScanner.bundle/beep"), CFSTR ("caf"), NULL);
+    CFURLRef soundFileURLRef  = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("CDVQrReader.bundle/beep"), CFSTR ("caf"), NULL);
     AudioServicesCreateSystemSoundID(soundFileURLRef, &_soundFileObject);
 
     return self;
@@ -771,7 +771,7 @@ parentViewController:(UIViewController*)parentViewController
 @synthesize stringToEncode       = _stringToEncode;
 @synthesize size                 = _size;
 
-- (id)initWithPlugin:(CDVBarcodeScanner*)plugin callback:(NSString*)callback stringToEncode:(NSString*)stringToEncode{
+- (id)initWithPlugin:(CDVQrReader*)plugin callback:(NSString*)callback stringToEncode:(NSString*)stringToEncode{
     self = [super init];
     if (!self) return self;
 
@@ -1006,7 +1006,7 @@ parentViewController:(UIViewController*)parentViewController
 #endif
 
     if (_processor.isShowTorchButton && !_processor.isFrontCamera) {
-      NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"CDVBarcodeScanner" withExtension:@"bundle"];
+      NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"CDVQrReader" withExtension:@"bundle"];
       NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
       NSString *imagePath = [bundle pathForResource:@"torch" ofType:@"png"];
       UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
@@ -1106,7 +1106,7 @@ parentViewController:(UIViewController*)parentViewController
     return result;
 }
 
-#pragma mark CDVBarcodeScannerOrientationDelegate
+#pragma mark CDVQrReaderOrientationDelegate
 
 - (BOOL)shouldAutorotate
 {
