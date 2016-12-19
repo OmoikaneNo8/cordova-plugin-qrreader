@@ -158,7 +158,7 @@ public class QrReader extends CordovaPlugin {
                       index = (dataBytes[0] & 0x0F);
                       total = ((dataBytes[1] & 0xF0) >> 4) + 1;
                     }
-                    parity = ()((dataBytes[1] & 0x0F) << 4) | ((dataBytes[2] & 0xF0) >> 4));
+                    parity = (((dataBytes[1] & 0x0F) << 4) | ((dataBytes[2] & 0xF0) >> 4));
                     obj.put(SPLIT,splitflg);
                     obj.put(INDEX,index);
                     obj.put(TOTAL,total);
