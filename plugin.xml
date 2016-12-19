@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-qrreader"
-  version="0.0.38">
+  version="0.0.39">
 
   <name>QrReader</name>
   <description>This is a Cordova Plugin. for QR Read.</description>
@@ -48,7 +48,7 @@
       </feature>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <activity android:name="com.google.zxing.client.android.CaptureActivity" android:clearTaskOnLaunch="true" android:configChanges="orientation|keyboardHidden|screenSize" android:theme="@style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateAlwaysHidden" android:exported="false" />
+      <activity android:name="com.google.zxing.client.android.CaptureActivity" android:clearTaskOnLaunch="true" android:configChanges="orientation|keyboardHidden|screenSize"  android:windowSoftInputMode="stateAlwaysHidden" android:exported="false" />
       <activity android:name="com.google.zxing.client.android.encode.EncodeActivity" android:label="Share"/>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest">
