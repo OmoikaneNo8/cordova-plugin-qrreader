@@ -11,10 +11,6 @@ repositories{
     flatDir{
         dirs 'libs'
     }
-    mavenCentral();
-    maven{
-        url "http://dl.bintray.com/journeyapps/maven"
-    }
 }
 
 dependencies {
