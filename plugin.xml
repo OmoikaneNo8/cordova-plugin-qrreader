@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-qrreader"
-  version="0.0.41">
+  version="0.0.42">
 
   <name>QrReader</name>
   <description>This is a Cordova Plugin. for QR Read.</description>
@@ -22,7 +22,7 @@
         <param name="ios-package" value="CDVQrReader"/>
       </feature>
     </config-file>
-    <preference name="CAMERA_USAGE_DESCRIPTION" default=" "/>
+    <preference name="CAMERA_USAGE_DESCRIPTION" default="Scan Qr Codes"/>
     <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
       <string>$CAMERA_USAGE_DESCRIPTION</string>
     </config-file>
